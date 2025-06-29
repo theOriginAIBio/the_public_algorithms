@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> THE PUBLIC ALGORITHMS STRATEGIC COUNCIL </title>
+      <style>
+        body {
+            font-family: monospace;
+            color:white;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+            background-color:tomato;
+        }
+        h1 {
+            color: white;
+            font-size: 2.5em;
+            font-weight:bold;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: white;
+            font-size: 1.8em;
+            margin-top: 30px;
+        }
+        p {
+            margin-bottom: 15px;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+       
+        
+        .footer {
+            margin-top: 40px;
+            text-align: right;
+            font-style: italic;
+            color: white;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+        .emoji {
+            font-size: 1.2em;
+            vertical-align: middle;
+        }
+         /* Main Section Styling */
+        main {
+            padding: 40px 20px;
+            max-width: 1200px; /* Max width for content */
+            margin: 0 auto; /* Center the main content */
+            box-sizing: border-box; /* Include padding in element's total width and height */
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8em;
+            color: #2c3e50; /* Darker blue-grey for title */
+            margin-bottom: 50px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: #3498db; /* Blue accent under title */
+            border-radius: 2px;
+        }
+
+        /* Cards Container - Grid Layout for Responsiveness */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid columns */
+            gap: 30px; /* Space between cards */
+        }
+
+        /* Individual Member Card Styling */
+        .member-card {
+            background-color: #ffffff; /* White card background */
+            border-radius: 12px; /* Rounded corners for cards */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08); /* Soft, larger shadow */
+            overflow: hidden; /* Ensures image corners are rounded with card */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
+        }
+
+        .member-card:hover {
+            transform: translateY(-8px); /* Lift effect on hover */
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15); /* More pronounced shadow on hover */
+        }
+
+        .card-image-container {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%; /* Circular image */
+            overflow: hidden;
+            border: 4px solid #3498db; /* Blue border around image */
+            box-shadow: 0 0 0 5px rgba(52, 152, 219, 0.2); /* Subtle glow around border */
+            margin-bottom: 25px;
+            display: flex; /* For centering the image if needed */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Cover the container without distorting aspect ratio */
+            display: block; /* Remove extra space below image */
+        }
+
+        .card-content h3 {
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin: 0 0 8px 0;
+            font-weight: 600;
+        }
+
+        .member-role {
+            font-size: 1.1em;
+            color: #3498db; /* Blue for the role */
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .member-bio {
+            font-size: 0.95em;
+            color: #666;
+            margin-bottom: 25px;
+            height: 60px; /* Fixed height for bio for consistent card sizing */
+            overflow: hidden; /* Hide overflow if bio is too long */
+            text-overflow: ellipsis; /* Add ellipsis if text is cut */
+        }
+
+        .read-more-btn {
+            display: inline-block;
+            background-color: #2ecc71; /* Green button */
+            color: white;
+            padding: 10px 25px;
+            border-radius: 8px; /* Rounded button corners */
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3); /* Button shadow */
+        }
+
+        .read-more-btn:hover {
+            background-color: #27ae60; /* Darker green on hover */
+            transform: translateY(-2px); /* Slight lift */
+            box-shadow: 0 6px 15px rgba(46, 204, 113, 0.4);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            main {
+                padding: 20px 15px;
+            }
+
+            .section-title {
+                font-size: 2.2em;
+                margin-bottom: 40px;
+            }
+
+            .cards-container {
+                grid-template-columns: 1fr; /* Single column on small screens */
+            }
+
+            .member-card {
+                padding: 25px;
+            }
+
+            .card-image-container {
+                width: 120px;
+                height: 120px;
+                margin-bottom: 20px;
+            }
+
+            .card-content h3 {
+                font-size: 1.6em;
+            }
+
+            .member-role {
+                font-size: 1em;
+            }
+
+            .member-bio {
+                font-size: 0.9em;
+                height: auto; /* Allow bio to expand on smaller screens */
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+<h1>THE STRATEGIC COUNCIL </h1>
+ <main>
+        <h2 class="section-title">STRATEGIC COUNCIL</h2>
+        <div class="cards-container">
+
+            <!-- Member Card 1 -->
+            <div class="member-card">
+                <div class="card-image-container">
+                    <img src="https://placehold.co/150x150/3498db/ffffff?text=UN+1" alt="Dr. Anya Sharma">
+                </div>
+                <div class="card-content">
+                    <h3>JUNAID BASHIR</h3>
+                    <p class="member-role">HEAD OF THE STRATEGIC COUNCIL </p>
+                    <p class="member-bio">Software Engineering | Founding CEO & CTO @ OriginAI </p>
+                </div>
+            </div>
+
+            <!-- Member Card 2 -->
+            <div class="member-card">
+                <div class="card-image-container">
+                    <img src="https://placehold.co/150x150/2ecc71/ffffff?text=UN+2" alt="Jean-Luc Dubois">
+                </div>
+                <div class="card-content">
+                    <h3>DANISH BASHIR</h3>
+                    <p class="member-role">PERMANENT MEMBER STRATEGIC COUNCIL</p>
+                    <p class="member-bio"> Structural Engineering | Founding COO @ OriginAI</p>
+                    
+                </div>
+            </div>
+
+            <!-- Member Card 3 -->
+            <div class="member-card">
+                <div class="card-image-container">
+                    <img src="https://placehold.co/150x150/e74c3c/ffffff?text=UN+3" alt="Ambassador Lena Petrova">
+                </div>
+                <div class="card-content">
+                    <h3>FAIZ</h3>
+                    <p class="member-role">PERMANENT MEMBER STRATEGIC COUNCIL</p>
+                    <p class="member-bio"> Film Productions and Community Leadership |  CRO @ OriginAI</p>
+                    <a href="#" class="read-more-btn">View Profile</a>
+                </div>
+            </div>
+
+            <!-- Member Card 4 -->
+            <div class="member-card">
+                <div class="card-image-container">
+                    <img src="https://placehold.co/150x150/f1c40f/ffffff?text=UN+4">
+                </div>
+                <div class="card-content">
+                    <h3>To be Announced</h3>
+                    <p class="member-role">To be Announced</p>
+                    <p class="member-bio">To be Annonced</p>
+          
+                </div>
+            </div>
+
+            <!-- Member Card 5 -->
+            <div class="member-card">
+                <div class="card-image-container">
+                    <img src="https://placehold.co/150x150/9b59b6/ffffff?text=UN+5">
+                </div>
+                <div class="card-content">
+                    <h3>To be Announced</h3>
+                    <p class="member-role">To be Announced</p>
+                    <p class="member-bio">To be Announced</p>
+                </div>
+            </div>
+
+        </div> <!-- End .cards-container -->
+ </main>
+  
+</body>
+
+</html>
