@@ -60,10 +60,159 @@
             font-size: 1.2em;
             vertical-align: middle;
         }
+
+           /* Navbar Styling */
+        .navbar {
+            background-color: #ffffff; /* White background */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); /* Subtle shadow for depth */
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky; /* Makes the navbar stick to the top */
+            top: 0;
+            z-index: 1000; /* Ensures it stays above other content */
+        }
+
+        .navbar-brand {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #4CAF50; /* A pleasant green for the brand */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            color: #45a049; /* Slightly darker green on hover */
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 35px; /* Spacing between nav items */
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: #555; /* Darker grey for links */
+            font-size: 1.1em;
+            font-weight: 500;
+            padding: 5px 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item a:hover {
+            color: #4CAF50; /* Green on hover */
+        }
+
+        /* Underline effect on hover */
+        .nav-item a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px; /* Position below the text */
+            left: 0;
+            background-color: #4CAF50; /* Green underline */
+            transition: width 0.3s ease;
+        }
+
+        .nav-item a:hover::after {
+            width: 100%; /* Expand underline on hover */
+        }
+
+        /* Optional: Add a button or call to action */
+        .navbar-cta {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .navbar-cta:hover {
+            background-color: #45a049;
+            transform: translateY(-2px); /* Slight lift effect */
+        }
+
+        /* --- Responsive Design (Hamburger Menu) --- */
+        .menu-toggle {
+            display: none; /* Hidden by default on larger screens */
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background-color: #555;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-wrap: wrap;
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                display: none; /* Hide nav links by default */
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                margin-top: 15px;
+                gap: 15px; /* Adjust gap for vertical layout */
+            }
+
+            .nav-links.active {
+                display: flex; /* Show when active */
+            }
+
+            .nav-item a {
+                padding: 10px 0;
+                font-size: 1.2em; /* Larger links for mobile */
+            }
+
+            .nav-item a::after {
+                height: 1px; /* Thinner underline for mobile */
+                bottom: -2px;
+            }
+
+            .menu-toggle {
+                display: flex; /* Show hamburger icon */
+            }
+
+            .navbar-cta {
+                display: none; /* Hide CTA on smaller screens if desired */
+                width: 100%;
+                text-align: center;
+                margin-top: 15px;
+            }
+        }
+        
     </style>
 </head>
 <body>
 
+    <nav class="navbar">
+        <a href="#" class="navbar-brand">Your Brand</a> <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <li class="nav-item"><a href="#projects">Projects</a></li>
+            <li class="nav-item"><a href="/organization.html">Structure</a></li>
+            <li class="nav-item"><a href="#strategic-council">Strategic Council</a></li>
+            <li class="nav-item"><a href="#general-assembly">General Assembly</a></li>
+        </ul>
+    </nav>
     <h1>THE PUBLIC ALGORITHMS <span class="emoji">🚀</span></h1>
     <p>An open initiative for engineering Advanced AI for causes worth fighting for</p>
     
@@ -85,5 +234,13 @@
 
     <p class="footer">@ A ORIGINAI INITIATIVE</p>
 
+<script>
+      const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+</script>
 </body>
 </html>
